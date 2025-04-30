@@ -42,15 +42,50 @@ When the game ends, player is shown their stats - number of moves (valid and inv
 
 -----
 
-### NEW GAME GAMEPLAY (WITH DEBUG MODE ON)
+## NEW GAME GAMEPLAY (WITH DEBUG MODE ON)
 
-Game shows allocation of memory, number of moves and plays sound on successful input
+### Gameplay shows:
+
+- Debug mode on:
+  - Can switch `ON`/`OFF` in main menu
+  - Shows alloc and disalloc 
+
+- Valid inputs: 
+  - Plays sound
+  - Updates and prints board
+
+- Invalid inputs:
+  - Shows error depending on mistake made
+
+- Special inputs:
+  - Shows *Save* mechanic
+  - Shows *Help* info
+
+- On win:
+  - Shows stats `number of moves`, `time`
+  - Shows *reward*
+  - App doesn't close and shows Main Menu 
+
 
 ![Gameplay](gifs/Sudoku_Gameplay.gif)
 
 -----
 
-### LOADING SAVE
+## LOADING SAVE
+
+### Gameplay shows:
+
+- Loading save
+  - All stats and progress made are also loaded
+  - If board is 16x16 shows special instruction
+
+- Shows 16x16 grid with hexadecimal number system
+
+- Inputs:
+  - Inputs are regular decimal numbers
+
+- Special input:
+  - *Exit* input shows stats and end game screen
 
 You can save and later load your session. Even after closing console.
 Stats before save and after loading are summed on win.
