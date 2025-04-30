@@ -19,6 +19,8 @@ Delete number in format:
 - `0 0 9` – EXIT
 
 You can turn on dev mode in main menu - shows allocs and disallocs of the board 
+When the game ends, player is shown their stats - number of moves (valid and invalid) and time spent playing
+
 **The player is rewarded for winning :]**
 
 ------
