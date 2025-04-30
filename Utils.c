@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+#include "boardBuilder.h"
+#include "UI.h"
+#include "stats.h"
+
+//need to save boardSize, boxSize, diff, and current board[][]
+
+void SaveGame(const char *filename){
+
+
+    FILE *file = fopen(filename, "wb");
+
+    if(!file){ printf("!!! File not found !!! \n");
+        return; //return byl poza funckajxD
+    }
+
+    time_t currentTime = time(NULL); //to later get duration of game
+    totalGameTime += (currentTime - gameTime); //add to this session
+    gameTime = currentTime;
+
+    fwrite(&boardSize, sizeof(int), 1, file); //what to save | size | num of elements to save| stream to save
+    fwrite(&boxSize, sizeof(int), 1, file);
+    fwrite(&difficulty, sizeof(int), 1, file);
+    fwrite(&seed, sizeof(unsigned int), 1, file);
+    fwrite(&moveCounter, sizeof(unsigned int), 1, file);
+    fwrite(&totalGameTime, sizeof(time_t), 1 , file);
+
+
+
+    for (int i=0; i<boardSize; i++){
+        fwrite(board[i], sizeof(int), boardSize, file); //in loop bcs only first row was being saved bcs array is 2 dimensiomal
+    }
+    fclose(file);
+
+    const char* info[] = {"*** Save succesful ***\n"};
+    PrintText(info, 1);
+
+}
+
+int LoadGame(const char *filename){
+
+    FILE *file = fopen(filename, "rb");
+
+    if(!file){
+       printf("!!! File not found !!! \n");
+        return 0;
+    }
+
+    fread(&boardSize, sizeof(int), 1, file); //what to save | size | num of elements to save| stream to save
+    fread(&boxSize, sizeof(int), 1, file);
+    fread(&difficulty, sizeof(int), 1, file);
+    fread(&seed, sizeof(unsigned int), 1, file);
+    fread(&moveCounter, sizeof(unsigned int), 1, file);
+    fread(&totalGameTime, sizeof(time_t), 1 , file);
+
+    gameTime = time(NULL); //new session
+
+    srand(seed);
+
+    for (int i = 0; i < boardSize; i++) {
+        fread(board[i], sizeof(int), boardSize, file); //also loop here :]
+    }
+
+    fclose(file);
+
+    const char* info[] = {"*** Load successful ***\n"};
+    PrintText(info, 1);
+
+    return 1;
+}
+
+int ExitGame(){
+
+    PrintExitGame();
+    return 0;
+}
