@@ -15,21 +15,23 @@ SPECIAL INPUTS:
 
 You can enable dev mode in main menu. It shows allocation and disallocation of the board.
 
+***Player is rewarded for winning :]***
+
 
 ## New Game gameplay
 
 Player can choose size of board (4x4, 9x9 or 16x16).
-When playing on 16x16 board game uses hex number system [Important 16=G not 10 for readibility].
+When playing on 16x16 board game uses hex number system ***[Important 16=G not 10 for readibility]***.
 Player can input numerical values when playing on 16x16 ex. 10 not A
 
 Player can choose difficulty (Novice, Apprentice, Master).
 The higher difficulty, the less numbers shown on starting board.
 
 Player can input seed to generate board
-When input seed = 0 the board is generated randomly.
+***When input seed = 0 the board is generated randomly.***
 
 Example gameplay with debug mode on to show allocation
-Game plays sound on successful input
+**Game plays sound on successful input**
 
 ![Gameplay](gifs/Sudoku_Gameplay.gif)
 
