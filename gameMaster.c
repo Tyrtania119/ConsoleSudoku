@@ -9,6 +9,8 @@
 
 int kill = 0;
 
+int debugMode=0;
+
 int isBoardComplete(){
 
     for(int i=0; i<boardSize; i++){
@@ -40,7 +42,7 @@ void StartGame(){
         printf("\n Enter your move [ row | column | number ]");
 
         if (scanf("%d %d %d", &row, &col, &n) != 3) { //to avoid bugs with spaces and invalid inputs
-            printf("\n!!! Invalid input. Please enter three numbers separated by spaces !!!\n");
+            printf("\n!!! Invalid input. Enter three numbers separated by spaces !!!\n");
             while (getchar() != '\n');
             continue;
         }
@@ -52,7 +54,7 @@ void StartGame(){
         }
 
         if (row == 9 && col == 9 && n == 9){
-
+            ClearConsole();
             ExitGame();
             kill=1;
             continue;
@@ -99,12 +101,14 @@ void StartGame(){
         if (board[row][col] != 0){
 
             printf("\n !!!That cell is already filled!!!\n");
+            moveCounter++;
             continue;
         }
 
         if (!isValid(row, col, n)){
 
             printf("\n !!!Cannot place this number there!!!\n");
+            moveCounter++;
             continue;
         }
 
@@ -115,7 +119,10 @@ void StartGame(){
         printf("\a"); //sound fx :]]
     }
 
-    if(kill != 1){ PrintWin(); }
+    if(kill != 1){
+
+        PrintWin();
+    }
 
 }
 

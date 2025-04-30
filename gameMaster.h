@@ -3,4 +3,6 @@
 
 void StartGame();
 
+extern int debugMode;
+
 #endif // GAMEMASTER_H

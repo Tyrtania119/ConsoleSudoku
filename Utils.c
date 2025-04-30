@@ -4,6 +4,7 @@
 #include "boardBuilder.h"
 #include "UI.h"
 #include "stats.h"
+#include "gameMaster.h"
 
 //need to save boardSize, boxSize, diff, and current board[][]
 
@@ -41,6 +42,8 @@ void SaveGame(const char *filename){
 
 int LoadGame(const char *filename){
 
+    ClearConsole();
+
     FILE *file = fopen(filename, "rb");
 
     if(!file){
@@ -57,7 +60,7 @@ int LoadGame(const char *filename){
 
     gameTime = time(NULL); //new session
 
-    srand(seed);
+    //srand(seed);
 
     for (int i = 0; i < boardSize; i++) {
         fread(board[i], sizeof(int), boardSize, file); //also loop here :]
@@ -70,6 +73,31 @@ int LoadGame(const char *filename){
 
     return 1;
 }
+
+int** AllocBoard(int boardSize){
+
+    int** board = malloc(boardSize * sizeof(int*));
+
+    for(int i=0; i<boardSize; i++){
+        board[i] = malloc(boardSize * sizeof(int));
+    }
+
+    if(debugMode){printf("[DEBUG] Allocating board of size %dx%d\n", boardSize, boardSize);}
+
+    return board;
+}
+
+void DisallocBoard(int** board, int boardSize){
+
+    for(int i=0; i<boardSize; i++){
+
+        free(board[i]); //Firt elements of board then the board itself
+    }
+
+    if(debugMode){printf("[DEBUG] Disallocating board of size %dx%d\n", boardSize, boardSize);}
+    free(board);
+}
+
 
 int ExitGame(){
 
