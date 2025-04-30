@@ -11,5 +11,6 @@ void PrintExitGame();
 void Print16();
 void PrintTitleScreen();
 int ExitGame();
+void ClearConsole();
 
 #endif

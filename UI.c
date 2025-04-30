@@ -5,6 +5,15 @@
 #include "boardBuilder.h"
 #include "stats.h"
 
+void ClearConsole(){
+
+    int i = 0;
+
+    do{printf(" \n"); i++;}
+    while (i<=100);
+
+}
+
 void PrintText(const char* lines[], int lineCount){
 
     int maxLen = 0;

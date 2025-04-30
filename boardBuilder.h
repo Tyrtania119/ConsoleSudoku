@@ -12,10 +12,12 @@ void InitBoard();
 void RandomizeBoard();
 void ApplyDifficultyToBoard();
 
+
 //to access board in gameMaster
-extern int board[MAX_SIZE][MAX_SIZE];
-extern int startingBoard[MAX_SIZE][MAX_SIZE];
+extern int** board;
+extern int** startingBoard;
 extern int boardSize;
+extern unsigned int previousBoardSize; //to properly disallocate memory
 extern int boxSize;
 extern int difficulty;
 extern unsigned int seed;

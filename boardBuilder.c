@@ -11,11 +11,12 @@
 #define MAX_SIZE 16
 
 //default values
-int board[MAX_SIZE][MAX_SIZE];
-int startingBoard[MAX_SIZE][MAX_SIZE];
+int** board = NULL;
+int** startingBoard = NULL;
 int boardSize = 9; //number of squares
 int boxSize = 3; //number of boxes per square
 int difficulty = 1;
+unsigned int previousBoardSize;
 
 unsigned int seed;
 
@@ -30,28 +31,30 @@ void ChooseBoardSize() {
         "3. 16x16"
     };
 
-    PrintText(sizes, 4);
+    do {
+        PrintText(sizes, 4);
 
-    scanf("%d", &choice);
+        if(scanf("%d", &choice) != 1){
 
-       switch (choice) {
-        case 1:
-            boardSize = 4;
-            boxSize = 2;
-            break;
-        case 2:
-            boardSize = 9;
-            boxSize = 3;
-            break;
-        case 3:
-            boardSize = 16;
-            boxSize = 4;
-            break;
-        default:
-            printf("Set to default 9x9.\n");
-            boardSize = 9;
-            boxSize = 3;
+            while(getchar() != '\n');
+            printf("!!! Insert number from 1 to 3\n");
         }
+    }while (choice < 1 || choice > 3);
+
+    if(choice == 1){
+        boardSize = 4;
+        boxSize = 2;
+    }
+
+    if(choice == 2){
+        boardSize = 9;
+        boxSize = 3;
+    }
+
+    if(choice == 3){
+        boardSize = 16;
+        boxSize = 4;
+    }
 
 }
 
@@ -66,23 +69,17 @@ void ChooseDifficulty() {
         "3. MASTER"
     };
 
-    PrintText(diff, 4);
+    do {
+        PrintText(diff, 4);
 
-    scanf("%d", &choice);
+        if(scanf("%d", &choice) != 1){
 
-        switch (choice) {
-    case 1:
-        difficulty = 1;
-        break;
-    case 2:
-        difficulty = 2;
-        break;
-    case 3:
-        difficulty = 3;
-        break;
-    default:
-        printf("Try again (1-3) >:c");
+            while(getchar() != '\n');
+            printf("!!! Insert number from 1 to 3\n");
         }
+    }while (choice < 1 || choice > 3);
+
+   difficulty = choice;
 }
 
 int isValid(int row, int col, int n){
@@ -120,6 +117,7 @@ void FillBox(int rowStart, int colStart){
         for (int j=0; j<boxSize; j++){
             do{
                 n = rand() % boardSize + 1;
+
             }while (!isValid(rowStart+i, colStart+j, n)); //keep checking until that number is valid  HAVE TO CHECK LATER IF IT IS NOT TOO SLOW
 
             board[rowStart+i][colStart+j]=n;
@@ -160,16 +158,16 @@ int FillBoard(int row, int col){
     return 0;
 }
 
-void CopyBoard(int boardToCopy[MAX_SIZE][MAX_SIZE], int board[MAX_SIZE][MAX_SIZE]){
+void CopyBoard(int** boardToCopy, int** resBoard){
 
     for (int i=0; i<boardSize; i++){
         for (int j=0; j<boardSize; j++){
-            board[i][j] = boardToCopy[i][j];
+            resBoard[i][j] = boardToCopy[i][j];
         }
     }
 }
 
-void ZeroBoard(int board[MAX_SIZE][MAX_SIZE]){
+void ZeroBoard(int** board){
     for (int i = 0; i < boardSize; i++) {
         for (int j = 0; j < boardSize; j++) {
             board[i][j] = 0;
@@ -180,6 +178,13 @@ void ZeroBoard(int board[MAX_SIZE][MAX_SIZE]){
 
 void InitBoard(){
 
+    if( board != NULL) { DisallocBoard(board, previousBoardSize);}
+    if( startingBoard != NULL) {DisallocBoard(startingBoard, previousBoardSize);}
+
+    board = AllocBoard(boardSize);
+    startingBoard = AllocBoard(boardSize); //dynamic allocation of boards
+
+    previousBoardSize = boardSize; //to properly disallocate memory
 
     ZeroBoard(board); //fill with zeroes first
     ZeroBoard(startingBoard); //init of board with origianl numbers for the deleting mechanic
@@ -195,9 +200,9 @@ void ApplyDifficultyToBoard(){
     int cellNum = boardSize*boardSize;
     int cellToDel;
 
-    if ( difficulty == 1){ cellToDel = cellNum * 0.2;} //multipliers
-    else if ( difficulty == 2){ cellToDel = cellNum * 0.6;}
-    else { cellToDel = cellNum * 0.8; }
+    if ( difficulty == 1){ cellToDel = (int)ceil(cellNum * 0.2);} //multipliers
+    else if ( difficulty == 2){ cellToDel = (int)ceil(cellNum * 0.6);}
+    else { cellToDel = (int)ceil(cellNum * 0.8); }
 
 
     int positions[cellNum]; //get array with all positons bcs earlier they could be deleted many times
@@ -233,7 +238,9 @@ int GetSeed(){
 
         seed = (unsigned int)time(NULL); //random based on time so every game is different
     }
-    srand(seed);
+
+    if(debugMode) {printf("[DEBUG] Using seed: %u\n", seed);}
+
 
     return seed;
 }
@@ -241,14 +248,19 @@ int GetSeed(){
 
 void initNewGame(){
 
+   ClearConsole();
+
     const char* settings[] = {"___SETTINGS___\n"};
     PrintText(settings, 1);
 
-    //printf("\n___SETTINGS___\n");
     ChooseBoardSize();
-    ChooseDifficulty();
-    GetSeed();
+    ClearConsole();
 
+    ChooseDifficulty();
+    ClearConsole();
+    GetSeed();
+    srand(seed);
+    ClearConsole();
     InitBoard();
     ApplyDifficultyToBoard();
     CopyBoard(board, startingBoard);
@@ -268,10 +280,11 @@ void InitMenu(){
             "1. NEW GAME",
             "2. LOAD SAVE",
             "3. MANUAL",
-            "4. EXIT"
+            "4. EXIT",
+            "5. DEVMODE"
         };
 
-        PrintText(menu, 5);
+        PrintText(menu, sizeof(menu)/sizeof(menu[0]));
         scanf("\n%d", &choice);
 
         switch(choice) {
@@ -287,6 +300,10 @@ void InitMenu(){
             case 4:
                 const char* gb[] = {"...Exiting"};
                 PrintText(gb,1);
+            case 5:
+                debugMode = !debugMode; //So we can switch between 0 and 1
+                printf("Debug mode %s\n", debugMode ? "ON" : "OFF");
+                break;
             default:
                 printf("\n");
         }
