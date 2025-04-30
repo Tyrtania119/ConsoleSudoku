@@ -1,63 +1,77 @@
 # ConsoleSudoku
-![TitleScreen](gifs/Title.JPG)
 
-Sudoku console game in C.
+![Title Screen](gifs/Title.JPG)
 
-## Instruction
+**Sudoku console game in C**
 
-Input your numbers in [ ROW | COLUMN | NUMBER ] format.
-Delete your number in [ ROW | COLUMN | -1 ] format.
-SPECIAL INPUTS:
-* 0 0 0 - SAVE 
-* 0 0 1 - HELP
-* 0 0 9 - EXIT
+------
 
+## MANUAL
 
-You can enable dev mode in main menu. It shows allocation and disallocation of the board.
+Input number in format:  
+`ROW COL NUMBER`  
+Delete number in format:  
+`ROW COL -1`
 
-***Player is rewarded for winning :]***
+### SPECIAL COMMANDS:
+- `0 0 0` – SAVE  
+- `0 0 1` – HELP  
+- `0 0 9` – EXIT
 
+You can turn on dev mode in main menu - shows allocs and disallocs of the board 
+**The player is rewarded for winning :]**
 
-## New Game gameplay
+------
 
-Player can choose size of board (4x4, 9x9 or 16x16).
-When playing on 16x16 board game uses hex number system ***[Important 16=G not 10 for readibility]***.
-Player can input numerical values when playing on 16x16 ex. 10 not A
+## NEW GAME
 
-Player can choose difficulty (Novice, Apprentice, Master).
-The higher difficulty, the less numbers shown on starting board.
+- Choose *board size*: `4x4`, `9x9`, `16x16`  
+- In `16x16` board game uses hexadecimal system  
+  **(16 = G, not 10 for better readibility)**  
+  Input numbers in decimal format. Example - 10 instead of A
 
-Player can input seed to generate board
-***When input seed = 0 the board is generated randomly.***
+- Choose *difficulty*:  
+  `Novice`, `Apprentice`, `Master`  
+  The higher difficulty, the less numbers shown on the starting board
 
-Example gameplay with debug mode on to show allocation
-**Game plays sound on successful input**
+- Set *seed*:  
+  `0` = random seed  
+  Other than 0 = seeded session
+
+-----
+
+### NEW GAME GAMEPLAY (WITH DEBUG MODE ON)
+
+Game shows allocation of memory, number of moves and plays sound on successful input
 
 ![Gameplay](gifs/Sudoku_Gameplay.gif)
 
-## Loaded save gameplay
-Game allows to save session along with stats
-Last save can be loaded 
-Stats from before saved and after 
-resumed session are combined and displayed on win
+-----
 
-![Load](gifs/Sudoku_Loading.gif)
+### LOADING SAVE
 
-## Known bugs, things to improve
+You can save and later load your session. Even after closing console.
+Stats before save and after loading are summed on win.
 
-* During game when player inputs numberOfRow [Enter] numberOfCol [Enter] number instead of R|C|N in one line
-they can lose track of what was already input
-	-> ADD TRACKER TO SHOW PLAYER ROW COL NUMBER SELECTED
+![Loading](gifs/Sudoku_Loading.gif)
 
-* Only one save can be made and loaded
-	-> CHANGE SAVING SYSTEM SO PLAYER CAN SAVE MANY FILES
+---
 
-* Folder hierarchy xD
+## Bugs and things to fix
 
-* All the bugs I don't know about :]
+- If player gives inputs (`R` `Enter` `C` `Enter` `N`), instead of one line, they can loose track of what was already input:
+  ➤ **Add tracker of inputs**
 
+- Player can save only one session at a time:
+  ➤ **Make multi save system**
 
-## Majóweczka :]
+- Folder structure xDD
 
-Me af: 
-![Me af:](gifs/Meme.gif)
+- All other bugs I don't know about :]
+
+---
+
+## Majóweczka
+
+**Me af:**  
+![Majóweczka](gifs/Meme.gif)
