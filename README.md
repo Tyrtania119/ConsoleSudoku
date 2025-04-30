@@ -1,4 +1,6 @@
 # ConsoleSudoku
+![TitleScreen](gifs/Title.jpg)
+
 Sudoku console game in C.
 
 ## Instruction
@@ -18,6 +20,7 @@ You can enable dev mode in main menu. It shows allocation and disallocation of t
 
 Player can choose size of board (4x4, 9x9 or 16x16).
 When playing on 16x16 board game uses hex number system [Important 16=G not 10 for readibility].
+Player can input numerical values when playing on 16x16 ex. 10 not A
 
 Player can choose difficulty (Novice, Apprentice, Master).
 The higher difficulty, the less numbers shown on starting board.
@@ -40,14 +43,16 @@ resumed session are combined and displayed on win
 
 ## Known bugs, things to improve
 
-*During game when player inputs numberOfRow <Enter> numberOfCol <Enter> number instead of R|C|N in one line
+* During game when player inputs numberOfRow [Enter] numberOfCol [Enter] number instead of R|C|N in one line
 they can lose track of what was already input
 	-> ADD TRACKER TO SHOW PLAYER ROW COL NUMBER SELECTED
 
-*Only one save can be made and loaded
+* Only one save can be made and loaded
 	-> CHANGE SAVING SYSTEM SO PLAYER CAN SAVE MANY FILES
 
-*Folder hierarchy xD
+* Folder hierarchy xD
+
+* All the bugs I don't know about :]
 
 
 ## Majóweczka :]
