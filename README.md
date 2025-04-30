@@ -1,5 +1,5 @@
 # ConsoleSudoku
-![TitleScreen](gifs/Title.jpg)
+![TitleScreen](gifs/Title.JPG)
 
 Sudoku console game in C.
 
