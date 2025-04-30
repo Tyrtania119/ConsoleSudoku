@@ -6,9 +6,9 @@ Sudoku console game in C.
 Input your numbers in [ ROW | COLUMN | NUMBER ] format.
 Delete your number in [ ROW | COLUMN | -1 ] format.
 SPECIAL INPUTS:
-	0 0 0 - SAVE 
-	0 0 1 - HELP
-	0 0 9 - EXIT
+* 0 0 0 - SAVE 
+* 0 0 1 - HELP
+* 0 0 9 - EXIT
 
 
 You can enable dev mode in main menu. It shows allocation and disallocation of the board.
@@ -30,7 +30,7 @@ Game plays sound on successful input
 
 ![Gameplay](gifs/Sudoku_Gameplay.gif)
 
-##Loaded save gameplay
+## Loaded save gameplay
 Game allows to save session along with stats
 Last save can be loaded 
 Stats from before saved and after 
@@ -40,12 +40,14 @@ resumed session are combined and displayed on win
 
 ## Known bugs, things to improve
 
--During game when player inputs numberOfRow <Enter> numberOfCol <Enter> number instead of R|C|N in one line
+*During game when player inputs numberOfRow <Enter> numberOfCol <Enter> number instead of R|C|N in one line
 they can lose track of what was already input
 	-> ADD TRACKER TO SHOW PLAYER ROW COL NUMBER SELECTED
 
--Only one save can be made and loaded
+*Only one save can be made and loaded
 	-> CHANGE SAVING SYSTEM SO PLAYER CAN SAVE MANY FILES
+
+*Folder hierarchy xD
 
 
 ## Majóweczka :]
