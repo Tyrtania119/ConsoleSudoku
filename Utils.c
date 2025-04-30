@@ -44,6 +44,8 @@ int LoadGame(const char *filename){
 
     ClearConsole();
 
+    if(debugMode){printf("Opening file...");}
+
     FILE *file = fopen(filename, "rb");
 
     if(!file){
@@ -51,7 +53,15 @@ int LoadGame(const char *filename){
         return 0;
     }
 
+
+
     fread(&boardSize, sizeof(int), 1, file); //what to save | size | num of elements to save| stream to save
+
+    board = malloc(boardSize * sizeof(int*)); //have to alloc bcs wont load when new session
+    for (int i = 0; i < boardSize; i++) {
+    board[i] = malloc(boardSize * sizeof(int));
+    }
+
     fread(&boxSize, sizeof(int), 1, file);
     fread(&difficulty, sizeof(int), 1, file);
     fread(&seed, sizeof(unsigned int), 1, file);

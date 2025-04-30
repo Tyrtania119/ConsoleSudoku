@@ -49,18 +49,17 @@ void StartGame(){
 
         if (row == 0 && col == 0 && n == 0) {
             SaveGame("save.dat");
-            printf("Game saved!\n");
             continue;
         }
 
-        if (row == 9 && col == 9 && n == 9){
+        if (row == 0 && col == 0 && n == 9){
             ClearConsole();
             ExitGame();
             kill=1;
             continue;
         }
 
-        if (row == 1 && col == 1 && n == 1){
+        if (row == 0 && col == 0 && n == 1){
 
             PrintManual();
             continue;
