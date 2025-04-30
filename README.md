@@ -25,7 +25,7 @@ When the game ends, player is shown their stats - number of moves (valid and inv
 
 ------
 
-## NEW GAME
+### NEW GAME
 
 - Choose *board size*: `4x4`, `9x9`, `16x16`  
 - In `16x16` board game uses hexadecimal system  
@@ -56,6 +56,8 @@ When the game ends, player is shown their stats - number of moves (valid and inv
 
 - Invalid inputs:
   - Shows error depending on mistake made
+
+- Deleting inputs
 
 - Special inputs:
   - Shows *Save* mechanic
