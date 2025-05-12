@@ -7,9 +7,12 @@
 #include "UI.h"
 #include "stats.h"
 
+extern void Solve(int** input, double temp_start, double temp_end, double alpha, int max_iter);
+
 int kill = 0;
 
 int debugMode=0;
+int autoWin = 0;
 
 int isBoardComplete(){
 
@@ -37,7 +40,7 @@ void StartGame(){
 
     while (!isBoardComplete() && (kill!=1)){
 
-        PrintBoard();
+        PrintBoard(board);
 
         printf("\n Enter your move [ row | column | number ]");
 
@@ -65,10 +68,22 @@ void StartGame(){
             continue;
         }
 
+        if (row == 0 && col == 0 && n == 7){
+            printf("\n launching annealing solver... \n");
+            Solve(startingBoard, 999999.0, 0.01, 0.9, 999999999);
+            continue;
+        }
+
+        if (row == 2 && col == 1 && n == 37){
+            debugMode = !debugMode;
+            printf("Debug mode %s\n", debugMode ? "ON" : "OFF");
+            continue;
+        }
+
         row--;
         col--; //to index from 1 not 0
 
-        if (row < -1 || row >= boardSize || col < -1 || col >= boardSize) {
+        if (row < 0 || row >= boardSize || col < 0 || col >= boardSize) {
 
             printf("\n !!!Invalid row or col position! Enter values between 1 and %d!!!\n", boardSize);
             continue;

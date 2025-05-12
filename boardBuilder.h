@@ -11,7 +11,7 @@ int FillBoard(int row, int col);
 void InitBoard();
 void RandomizeBoard();
 void ApplyDifficultyToBoard();
-
+void CopyBoard(int** boardToCopy, int** resBoard);
 
 //to access board in gameMaster
 extern int** board;

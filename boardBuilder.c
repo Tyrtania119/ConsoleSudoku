@@ -259,7 +259,6 @@ void initNewGame(){
     ChooseDifficulty();
     ClearConsole();
     GetSeed();
-    srand(seed);
     ClearConsole();
     InitBoard();
     ApplyDifficultyToBoard();

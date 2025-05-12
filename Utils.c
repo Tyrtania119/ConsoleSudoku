@@ -70,8 +70,6 @@ int LoadGame(const char *filename){
 
     gameTime = time(NULL); //new session
 
-    //srand(seed);
-
     for (int i = 0; i < boardSize; i++) {
         fread(board[i], sizeof(int), boardSize, file); //also loop here :]
     }

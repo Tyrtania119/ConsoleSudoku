@@ -64,6 +64,7 @@ void PrintShortManual(){
         "Input 0 0 9 to exit",
         "Input 0 0 1 for help",
         "Input R C -1 to delete",
+        "Input 0 0 7 to show solution",
         seedString,
         " "
     };
@@ -196,7 +197,7 @@ void PrintWin(){
 
 
 
-void PrintBoard(){
+void PrintBoard(int** boardToPrint){
 
     for (int i=0; i<3; i++){printf("\n");}
 
@@ -223,8 +224,8 @@ void PrintBoard(){
             //Vertical lines
             if(col % boxSize == 0 && col !=0){printf("| ");}
 
-            if(board[row][col] == 0){ printf(". ");}
-            else{ PrintNumberInBox(board[row][col]);}
+            if(boardToPrint[row][col] == 0){ printf(". ");}
+            else{ PrintNumberInBox(boardToPrint[row][col]);}
         }
         printf("\n");
     }

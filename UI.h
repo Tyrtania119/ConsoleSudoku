@@ -5,9 +5,10 @@
 void PrintText(const char* lines[], int lineCount);
 void PrintManual();
 void PrintShortManual();
-void PrintBoard();
+void PrintBoard(int** boardToPrint);
 void PrintWin();
 void PrintExitGame();
+void PrintSeparator();
 void Print16();
 void PrintTitleScreen();
 int ExitGame();

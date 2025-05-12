@@ -4,5 +4,6 @@
 void StartGame();
 
 extern int debugMode;
+extern int autoWin;
 
 #endif // GAMEMASTER_H
