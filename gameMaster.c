@@ -6,6 +6,7 @@
 #include "Utils.h"
 #include "UI.h"
 #include "stats.h"
+#include "solverGen.h"
 
 extern void Solve(int** input, double temp_start, double temp_end, double alpha, int max_iter);
 
@@ -70,7 +71,13 @@ void StartGame(){
 
         if (row == 0 && col == 0 && n == 7){
             printf("\n launching annealing solver... \n");
-            Solve(startingBoard, 999999.0, 0.01, 0.9, 999999999);
+            Solve(startingBoard, 10000.0, 0.01, 0.9, 9999);
+            continue;
+        }
+
+        if (row == 0 && col == 0 && n == 6){
+            printf("\n launching genetic solver... \n");
+            geneticSolver();
             continue;
         }
 
