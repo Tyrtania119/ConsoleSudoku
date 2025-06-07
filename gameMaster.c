@@ -76,6 +76,7 @@ void StartGame(){
         }
 
         if (row == 0 && col == 0 && n == 6){
+            SettingsGeneticSolver();
             printf("\n launching genetic solver... \n");
             geneticSolver();
             continue;

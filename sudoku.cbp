@@ -58,6 +58,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="solver.h" />
+		<Unit filename="solverGen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="solverGen.h" />
 		<Unit filename="stats.c">
 			<Option compilerVar="CC" />
 		</Unit>
